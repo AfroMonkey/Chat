@@ -21,10 +21,11 @@ public class ClientListener implements Runnable{
         try {
             dataInputStream = new DataInputStream(socket.getInputStream());
             do {
-                receiver = dataInputStream.readUTF();
+                //receiver = dataInputStream.readUTF();
                 message = dataInputStream.readUTF();
-                Thread clientTalker = new Thread(new ClientTalker(receiver, message));
-                clientTalker.start();
+                System.out.println(message);
+                //Thread clientTalker = new Thread(new ClientTalker(receiver, message));
+                //clientTalker.start();
             } while(!message.equals("Sax") && socket.isConnected());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

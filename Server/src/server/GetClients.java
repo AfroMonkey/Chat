@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class GetClients implements Runnable{
-    final private int port = 5001;
+    final private int port = 5050;
 
     @Override
     public void run() {
@@ -22,7 +22,6 @@ public class GetClients implements Runnable{
                 System.out.println("Client connected: " + socket.getRemoteSocketAddress());     
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
-                return;
             }
         } while(true);
     }
