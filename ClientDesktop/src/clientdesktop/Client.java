@@ -7,21 +7,23 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Client {
-    private String name;
-    private String hostIP;
+public class Client 
+{
+    private String user;
+    private String host;
     private int port;
+    
     private Socket socket;
 
-    public Client(String name, String hostIP, int port) {
-        this.name = name;
-        this.hostIP = hostIP;
+    public Client(String user, String host, int port) {
+        this.user = user;
+        this.host = host;
         this.port = port;
     }
     
     public void connect() {
         try {
-            socket = new Socket(hostIP, port);
+            socket = new Socket(host, port);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }

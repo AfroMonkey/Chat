@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/dcr/Documents/CETI/Java/Parcial%202/Chat/ClientDesktop/src/clientdesktop/Client.java</file>
+            <file>file:/Users/dcr/Documents/CETI/Java/Parcial%202/Chat/ClientDesktop/src/clientdesktop/Message.java</file>
+            <file>file:/Users/dcr/Documents/CETI/Java/Parcial%202/Chat/ClientDesktop/src/clientdesktop/ClientDesktop.java</file>
+            <file>file:/Users/dcr/Documents/CETI/Java/Parcial%202/Chat/ClientDesktop/src/clientdesktop/ClientTalker.java</file>
+        </group>
     </open-files>
 </project-private>
