@@ -30,7 +30,7 @@ public class ClientHome extends JFrame{
                         int row=usersTable.rowAtPoint(e.getPoint());
                         int col= usersTable.columnAtPoint(e.getPoint());
                         ClientConversation conversation = new ClientConversation(usersTable.getValueAt(row,col).toString());
-                        conversation.show();
+                        conversation.setVisible(true);
                     }
                 }
             );
