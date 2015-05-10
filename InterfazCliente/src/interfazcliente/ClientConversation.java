@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class ClientConversation extends JFrame implements Runnable{
+public class ClientConversation extends JFrame{
     private JTextArea txtMessages;
     private JTextField txtMessage;
     private JScrollPane scrMessages;
@@ -50,12 +50,4 @@ public class ClientConversation extends JFrame implements Runnable{
         );
         this.setLayout(layout);
     }
-
-    
-    
-    @Override
-    public void run() {
-        this.show();
-    }
-
 }

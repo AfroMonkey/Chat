@@ -29,8 +29,8 @@ public class ClientHome extends JFrame{
                     public void mouseClicked(java.awt.event.MouseEvent e) {
                         int row=usersTable.rowAtPoint(e.getPoint());
                         int col= usersTable.columnAtPoint(e.getPoint());
-                        Thread conversation = new Thread(new ClientConversation(usersTable.getValueAt(row,col).toString()));
-                        conversation.start();
+                        ClientConversation conversation = new ClientConversation(usersTable.getValueAt(row,col).toString());
+                        conversation.show();
                     }
                 }
             );
