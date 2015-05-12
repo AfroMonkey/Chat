@@ -1,6 +1,8 @@
 package chat;
 
 import java.awt.ComponentOrientation;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.Socket;
 import java.util.HashMap;
 import javax.swing.GroupLayout;
@@ -12,14 +14,19 @@ import javax.swing.JTextField;
 
 public class ClientConversation extends JFrame{
     private JTextArea txtMessages;
-    private JTextField txtMessage;
-    private JScrollPane scrMessages;
-    private JButton btnSend;
+    private final JTextField txtMessage;
+    private final JScrollPane scrMessages;
+    private final JButton btnSend;
    
-    public ClientConversation(String user) {
+    private String user;
+    private Socket socket;
+    
+    public ClientConversation(String user, Socket socket) {
         super(user);
         this.setSize(500, 500);
         
+        this.user = user;
+        this.socket = socket;
         
         txtMessages = new JTextArea();
         txtMessages.setLineWrap(true);
@@ -30,6 +37,12 @@ public class ClientConversation extends JFrame{
         txtMessage = new JTextField();
         
         btnSend = new JButton("Send");
+        btnSend.addActionListener((ActionEvent e) -> {
+            Thread messageSender = new Thread(new MessageSender(socket, user, txtMessage.getText()));
+            messageSender.start();
+            txtMessages.setText(txtMessages.getText() + "\n" + user + ":" + txtMessage.getText());
+            txtMessage.setText("");
+        });
         
         GroupLayout layout = new GroupLayout(this.getContentPane());
         layout.setHorizontalGroup(
