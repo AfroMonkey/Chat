@@ -21,10 +21,13 @@ public class MessageSender implements Runnable{
     private String user;
     private String message;
 
-    MessageSender(Socket socket, String user, String message) {
-        this.socket = socket;
-        this.user = user;
-        this.message = message;
+    ClientConversation clientConversation;
+    
+    MessageSender(ClientConversation clientConversation) {
+        this.clientConversation = clientConversation;
+        socket = clientConversation.socket;
+        user = clientConversation.user;
+        message = clientConversation.txtMessage.getText();
     }
 
     @Override
@@ -36,6 +39,9 @@ public class MessageSender implements Runnable{
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(message);
+            
+            clientConversation.txtMessages.setText(clientConversation.txtMessages.getText() + "\n" + user + ":" + clientConversation.txtMessage.getText());
+            clientConversation.txtMessage.setText("");
         } catch (IOException ex) {
             Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);
         }

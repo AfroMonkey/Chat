@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 public class ClientConversation extends JFrame{
     public JTextArea txtMessages;
-    private final JTextField txtMessage;
+    public final JTextField txtMessage;
     private final JScrollPane scrMessages;
     private final JButton btnSend;
    
@@ -38,10 +38,8 @@ public class ClientConversation extends JFrame{
         
         btnSend = new JButton("Send");
         btnSend.addActionListener((ActionEvent e) -> {
-            Thread messageSender = new Thread(new MessageSender(socket, user, txtMessage.getText()));
+            Thread messageSender = new Thread(new MessageSender(this));
             messageSender.start();
-            txtMessages.setText(txtMessages.getText() + "\n" + user + ":" + txtMessage.getText());
-            txtMessage.setText("");
         });
         
         GroupLayout layout = new GroupLayout(this.getContentPane());
