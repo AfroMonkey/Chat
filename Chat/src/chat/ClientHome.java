@@ -31,9 +31,9 @@ public class ClientHome extends JFrame{
                 new java.awt.event.MouseAdapter() {
                     @Override
                     public void mouseClicked(java.awt.event.MouseEvent e) {
-                        int row=usersTable.rowAtPoint(e.getPoint());
-                        int col= usersTable.columnAtPoint(e.getPoint());
-                        ClientConversation conversation = new ClientConversation(usersTable.getValueAt(row,col).toString());
+                        int row = usersTable.rowAtPoint(e.getPoint());
+                        int col = usersTable.columnAtPoint(e.getPoint());
+                        ClientConversation conversation = new ClientConversation(usersTable.getValueAt(row,col).toString(), socket);
                         conversation.setVisible(true);
                     }
                 }

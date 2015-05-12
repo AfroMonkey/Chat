@@ -17,16 +17,16 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author Juan
  */
 public class LoginForm extends JFrame{
-    private JPanel cardPanel, login, register;
+    private final JPanel cardPanel, login, register;
     private CardLayout cardLayout = new CardLayout();
     private final JMenuBar menuBar = new JMenuBar();
-    private JMenu menuPreferences = new JMenu("Preferencias");
-    private JMenuItem menuItemPort = new JMenuItem("Puerto");
-    private JMenuItem menuItemServer = new JMenuItem("Servidor");
+    private final JMenu menuPreferences = new JMenu("Preferencias");
+    private final JMenuItem menuItemPort = new JMenuItem("Puerto");
+    private final JMenuItem menuItemServer = new JMenuItem("Servidor");
     private JTextField userTxt, userRegTxt;
     private JPasswordField passTxt, passRegTxt, confirmRegTxt;
-    private JLabel userLbl, passLbl, regLbl, logLbl, userRegLbl, passRegLbl, confirmRegLbl;
-    private JButton loginBtn, regBtn, logBtn, registerBtn;
+    private final JLabel userLbl, passLbl, regLbl, logLbl, userRegLbl, passRegLbl, confirmRegLbl;
+    private final JButton loginBtn, regBtn, logBtn, registerBtn;
     
     private int port;
     private String serverIP;
@@ -175,25 +175,19 @@ public class LoginForm extends JFrame{
         cardPanel.add(register, "2");
         
         
-        regBtn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "2");
-                LoginForm.this.setSize(300, 260);
-                userTxt.setText(null);
-                passTxt.setText(null);
-            }
+        regBtn.addActionListener((ActionEvent e) -> {
+            cardLayout.show(cardPanel, "2");
+            LoginForm.this.setSize(300, 260);
+            userTxt.setText(null);
+            passTxt.setText(null);
         });
         
-        logBtn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "1");
-                LoginForm.this.setSize(300, 205);
-                userRegTxt.setText(null);
-                passRegTxt.setText(null);
-                confirmRegTxt.setText(null);
-            }
+        logBtn.addActionListener((ActionEvent e) -> {
+            cardLayout.show(cardPanel, "1");
+            LoginForm.this.setSize(300, 205);
+            userRegTxt.setText(null);
+            passRegTxt.setText(null);
+            confirmRegTxt.setText(null);
         });  
         super.
         add(cardPanel);        

@@ -13,13 +13,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ClientConversation extends JFrame{
-    private JTextArea txtMessages;
+    public JTextArea txtMessages;
     private final JTextField txtMessage;
     private final JScrollPane scrMessages;
     private final JButton btnSend;
    
-    private String user;
-    private Socket socket;
+    public String user;
+    public Socket socket;
     
     public ClientConversation(String user, Socket socket) {
         super(user);
@@ -64,5 +64,7 @@ public class ClientConversation extends JFrame{
                     )
         );
         this.setLayout(layout);
+        Thread messageReceiver = new Thread(new MessageReceiver(this));
+        messageReceiver.start();
     }
 }
