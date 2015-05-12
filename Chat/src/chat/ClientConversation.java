@@ -1,6 +1,8 @@
 package chat;
 
 import java.awt.ComponentOrientation;
+import java.net.Socket;
+import java.util.HashMap;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +15,7 @@ public class ClientConversation extends JFrame{
     private JTextField txtMessage;
     private JScrollPane scrMessages;
     private JButton btnSend;
-    
+   
     public ClientConversation(String user) {
         super(user);
         this.setSize(500, 500);

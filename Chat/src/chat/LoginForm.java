@@ -221,7 +221,7 @@ public class LoginForm extends JFrame{
             try {
                 Message logResult = (Message)objectInputStream.readObject();
                 if(logResult.getSender().equals(serverName) && logResult.getContent().equals("Accepted")) {
-                    ClientHome clientHome = new ClientHome(logResult.getContent());
+                    ClientHome clientHome = new ClientHome(logResult.getContent(), socket);
                     clientHome.setVisible(true);
                     this.setVisible(false);
                 }
