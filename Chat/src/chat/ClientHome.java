@@ -1,5 +1,6 @@
 package chat;
 
+import java.net.Socket;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -8,12 +9,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class ClientHome extends JFrame{
     private JTable usersTable;
-    private JScrollPane usersScroll;
-    private DefaultTableModel usersNames;
+    private final JScrollPane usersScroll;
+    private static DefaultTableModel usersNames;
     
-    private String user;
+    private final String user;
+    private final Socket socket;
     
-    public ClientHome(String user) {
+    public ClientHome(String user, Socket socket) {
         super(user);
         this.setSize(150, 700);
         this.setLocationRelativeTo(null);
@@ -21,6 +23,7 @@ public class ClientHome extends JFrame{
         this.setResizable(false);
         
         this.user = user;
+        this.socket = socket;
         
         usersNames = new DefaultTableModel(new String[] {"Users"}, 0);
         usersTable = new JTable(usersNames);
@@ -49,13 +52,13 @@ public class ClientHome extends JFrame{
         );
         this.setLayout(layout);
         
-        setNames();
+        Thread contactListener = new Thread(new ContactListener(socket, user));
+        contactListener.start();
     }
-
-    private void setNames() {
-        String[] names = {"Moy", "Juan", "Diego", "Pepe"};
-        for(String name : names) {
-            usersNames.addRow(new Object[] {name});
+    
+    public static void setUsersConnected(String[] users) {
+        for(String user : users) {
+            usersNames.addRow(new Object[] {user});
         }
     }
 }
