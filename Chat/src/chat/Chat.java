@@ -18,8 +18,9 @@ public class Chat {
      */
     public static void main(String[] args)
     {
-        LoginWindow login = new LoginWindow();
+        LoginForm login = new LoginForm();
         login.setVisible(true);
+        login.setServerIP();
         //Client client = new Client("user");
         //client.connect("IP", 13);
     }
