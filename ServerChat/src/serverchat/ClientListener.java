@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.omg.CORBA.DataOutputStream;
@@ -16,7 +19,7 @@ public class ClientListener implements Runnable
 {
     
     private Socket socket;
-    private HashMap<String, Socket> connectedUsers = new HashMap<String, Socket>();
+    private static HashMap<String, Socket> connectedUsers = new HashMap<String, Socket>();
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
     private String user;
@@ -44,6 +47,21 @@ public class ClientListener implements Runnable
     public void run() 
     {
         loginAttempt();
+    }
+    
+    public void ConnectedUsers(Message receiver) {
+        Message usersConnected;
+        String users = "";
+        
+        for (String u : connectedUsers.keySet()) {
+            users = users + "," + u;
+        }
+        usersConnected = new Message("Server", receiver.getSender(), users);
+        try {
+            objectOutputStream.writeObject(usersConnected);
+        } catch (IOException ex) {
+            Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void loginAttempt()
